@@ -10,6 +10,7 @@
             text-align: center;
             margin: 50px;
             overflow: hidden;
+            background-color: #f0f0f0; /* Set a background color */
         }
 
         #circlesContainer {
@@ -40,8 +41,24 @@
             }
         }
 
+        @keyframes floatCircleAlt {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(20px) translateX(-20px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
         #wordContainer {
             margin-top: 50px;
+        }
+
+        #sentence {
+            font-size: 24px; /* Adjusted font size */
         }
 
         #tryAgainBtn {
@@ -109,35 +126,10 @@
             circle.style.top = Math.random() * window.innerHeight + "px";
             circle.style.left = Math.random() * window.innerWidth + "px";
             document.getElementById("circlesContainer").appendChild(circle);
+
+            // Apply different animation to each circle
+            circle.style.animation = Math.random() < 0.5 ? "floatCircle" : "floatCircleAlt";
         }
 
-        // Generate 100 circles on page load
-        for (let i = 0; i < 100; i++) {
-            createRandomCircle();
-        }
-
-        function generateWords() {
-            const word1 = generateRandomWord(wordList1);
-            const word2 = generateRandomWord(wordList2);
-            const word3 = generateRandomWord(wordList3);
-
-            const sentence = `${word1} telling them ${word2} so that ${word3}`;
-
-            document.getElementById("sentence").textContent = sentence;
-
-            // Clear existing circles
-            document.getElementById("circlesContainer").innerHTML = "";
-
-            // Generate 100 circles on button click
-            for (let i = 0; i < 100; i++) {
-                createRandomCircle();
-            }
-        }
-
-        // Initial generation on page load
-        generateWords();
-    </script>
-</body>
-</html>
-
+        // Generate 100 circles
 
