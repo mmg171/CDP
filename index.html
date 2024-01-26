@@ -1,16 +1,16 @@
+User
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Should Write a Letter to:</title>
+    <title>You Should Write a Letter to: </title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
             overflow: hidden;
-            position: relative;
         }
 
         #wordContainer {
@@ -24,8 +24,11 @@
             cursor: pointer;
         }
 
+        /* Floating shapes animation */
         .shape {
             position: absolute;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background-color: #ffffff; /* White color for shapes */
             animation: float 5s infinite;
@@ -42,28 +45,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* New styles for circles */
-        .circle {
-            width: 30px;
-            height: 30px;
-            background-color: #ffcc00; /* Default color */
-            position: absolute;
-            border-radius: 50%;
-            animation: floatCircles 5s infinite;
-        }
-
-        @keyframes floatCircles {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(-20px, -20px);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
-        }
     </style>
 </head>
 <body>
@@ -71,7 +52,7 @@
     <div class="shape" style="left: 60%; top: 60%;"></div>
     <div class="shape" style="left: 80%; top: 10%;"></div>
 
-    <h1>You Should Write a Letter to:</h1>
+    <h1>You Should Write a Letter to: </h1>
 
     <div id="wordContainer">
         <p id="sentence"></p>
@@ -80,29 +61,82 @@
     <button id="tryAgainBtn" onclick="generateWords()">Try Again</button>
 
     <script>
-        // ... (Existing JavaScript code)
+        // Array of words for random generation
+        const wordList1 = [
+            "Your mom",
+            "Obama",
+            "Beyonce",
+            "Dolly Parton",
+            "Your cousin",
+            "Your mailman",
+            "Your dog",
+            "Your professor",
+            "Dwayne Johnson",
+            "All members of the band Abba",
+            "The mayor",
+            "Timothee Chalamet",
+            "Miley Cyrus",
+            "Edward from Twilight",
+            "Jacob from Twilight",
+            "Renesmee, the baby from Twilight"
+        ];
 
-        // New JavaScript code for generating circles
-        function generateCircles() {
-            const numCircles = 100;
-            const buffer = 50; // Buffer in pixels around the text
+        const wordList2 = [
+            "what you ate today,",
+            "your favorite color,",
+            "what you think about life,",
+            "who you have a crush on,",
+            "how to make your favorite cake,",
+            "what you think of dogs,",
+            "whether or not you like them,",
+            "your biggest secret,",
+            "your most embarrassing moment,",
+            "your morning routine,",
+            "your favorite song,",
+            "the worst thing you've ever done,"
+        ];
 
-            for (let i = 0; i < numCircles; i++) {
-                const circle = document.createElement("div");
-                circle.className = "circle";
-                circle.style.width = `${Math.floor(Math.random() * 30) + 10}px`; // Random width between 10 and 40 pixels
-                circle.style.height = circle.style.width;
-                circle.style.backgroundColor = generateRandomColor();
-                circle.style.left = `${Math.random() * (window.innerWidth - buffer * 2) + buffer}px`;
-                circle.style.top = `${Math.random() * (window.innerHeight - buffer * 2) + buffer}px`;
-                document.body.appendChild(circle);
+        const wordList3 = [
+            "they understand your true potential.",
+            "they will believe in you.",
+            "they can help make you feel better.",
+            "they can tell everyone how weird you are.",
+            "they can tell their neighbor about it.",
+            "they will know why you are the way you are.",
+            "they realize why you are so special.",
+            "they will have a topic to discuss with their therapist.",
+            "they will be able to talk about it at book club.",
+            "they will write about in their diary."
+        ];
+
+        function generateRandomWord(wordList) {
+            return wordList[Math.floor(Math.random() * wordList.length)];
+        }
+
+        function generateRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
             }
+            return color;
+        }
+
+        function generateWords() {
+            const word1 = generateRandomWord(wordList1);
+            const word2 = generateRandomWord(wordList2);
+            const word3 = generateRandomWord(wordList3);
+
+            const sentence = `${word1} to discuss ${word2} so that ${word3}`;
+
+            document.getElementById("sentence").textContent = sentence;
+
+            // Change the background color
+            document.body.style.backgroundColor = generateRandomColor();
         }
 
         // Initial generation on page load
         generateWords();
-        generateCircles();
     </script>
 </body>
 </html>
-
