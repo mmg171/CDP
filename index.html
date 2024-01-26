@@ -54,9 +54,7 @@
     <h1>You Should Write a Letter to</h1>
 
     <div id="wordContainer">
-        <p id="word1"></p>
-        <p id="word2"></p>
-        <p id="word3"></p>
+        <p id="sentence"></p>
     </div>
 
     <button id="tryAgainBtn" onclick="generateWords()">Try Again</button>
@@ -83,7 +81,6 @@
         ];
 
         const wordList2 = [
-            "telling them",
             "what you ate today",
             "your favorite color",
             "what you think about life",
@@ -99,7 +96,6 @@
         ];
 
         const wordList3 = [
-            "so that",
             "they understand your true potential",
             "they will believe in you",
             "they can help make you feel better",
@@ -126,9 +122,13 @@
         }
 
         function generateWords() {
-            document.getElementById("word1").textContent = generateRandomWord(wordList1);
-            document.getElementById("word2").textContent = generateRandomWord(wordList2);
-            document.getElementById("word3").textContent = generateRandomWord(wordList3);
+            const word1 = generateRandomWord(wordList1);
+            const word2 = generateRandomWord(wordList2);
+            const word3 = generateRandomWord(wordList3);
+
+            const sentence = `${word1} telling them ${word2} so that ${word3}`;
+
+            document.getElementById("sentence").textContent = sentence;
 
             // Change the background color
             document.body.style.backgroundColor = generateRandomColor();
