@@ -9,6 +9,8 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
+            background-color: #add8e6; /* Light Blue background color */
+            overflow: hidden;
         }
 
         #wordContainer {
@@ -21,9 +23,35 @@
             font-size: 16px;
             cursor: pointer;
         }
+
+        /* Floating shapes animation */
+        .shape {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ffffff; /* White color for shapes */
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="shape" style="left: 10%; top: 30%;"></div>
+    <div class="shape" style="left: 60%; top: 60%;"></div>
+    <div class="shape" style="left: 80%; top: 10%;"></div>
+
     <h1>Your Next Vacation</h1>
 
     <div id="wordContainer">
