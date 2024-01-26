@@ -9,7 +9,6 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
-            background-color: #add8e6; /* Light Blue background color */
             overflow: hidden;
         }
 
@@ -72,10 +71,22 @@
             return wordList[Math.floor(Math.random() * wordList.length)];
         }
 
+        function generateRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
         function generateWords() {
             document.getElementById("word1").textContent = generateRandomWord(wordList1);
             document.getElementById("word2").textContent = generateRandomWord(wordList2);
             document.getElementById("word3").textContent = generateRandomWord(wordList3);
+
+            // Change the background color
+            document.body.style.backgroundColor = generateRandomColor();
         }
 
         // Initial generation on page load
@@ -83,5 +94,3 @@
     </script>
 </body>
 </html>
-
-
