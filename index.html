@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Next Vacation</title>
+    <title>You Should Write a letter to: </title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,12 +14,6 @@
 
         #wordContainer {
             margin-top: 20px;
-        }
-
-        .word {
-            display: inline-block;
-            position: relative;
-            animation: moveWord 5s infinite;
         }
 
         #tryAgainBtn {
@@ -50,18 +44,6 @@
                 transform: translateY(0);
             }
         }
-
-        @keyframes moveWord {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(20px, 20px);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
-        }
     </style>
 </head>
 <body>
@@ -72,16 +54,34 @@
     <h1>Your Next Vacation</h1>
 
     <div id="wordContainer">
-        <p class="word" id="word1"></p>
-        <p class="word" id="word2"></p>
-        <p class="word" id="word3"></p>
+        <p id="word1"></p>
+        <p id="word2"></p>
+        <p id="word3"></p>
     </div>
 
     <button id="tryAgainBtn" onclick="generateWords()">Try Again</button>
 
     <script>
         // Array of words for random generation
-        const wordList1 = ["Beach", "Mountain", "City", "Island", "Forest"];
+        const wordList1 = [
+            "Your mom",
+            "Obama",
+            "Beyonce",
+            "Dolly Parton",
+            "Your cousin",
+            "Your mailman",
+            "Your dog",
+            "Your professor",
+            "Dwayne Johnson",
+            "All members of the band Abba",
+            "The mayor",
+            "Timothee Chalamet",
+            "Miley Cyrus",
+            "Edward from Twilight",
+            "Jacob from Twilight",
+            "Renesmee, the baby from Twilight"
+        ];
+
         const wordList2 = ["Adventure", "Relaxation", "Exploration", "Cultural", "Luxury"];
         const wordList3 = ["Sunset", "Wildlife", "History", "Cuisine", "Architecture"];
 
@@ -112,4 +112,5 @@
     </script>
 </body>
 </html>
+
 
