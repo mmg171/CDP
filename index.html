@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Words Generator</title>
+    <title>Random Food Pictures</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,36 +13,50 @@
         h1 {
             color: #333;
         }
-        p {
-            font-size: 18px;
-            color: #666;
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Randomly Generated Words</h1>
-    <p id="randomWords"></p>
+    <h1>Random Food Pictures</h1>
+    <div id="foodPictures"></div>
 
     <script>
-        // Function to generate a random word
-        function generateRandomWord() {
-            const words = ['Sun', 'Moon', 'Star', 'Ocean', 'Mountain', 'Forest', 'River', 'Valley', 'Rainbow', 'Cloud'];
-            const randomIndex = Math.floor(Math.random() * words.length);
-            return words[randomIndex];
+        // Function to fetch random food pictures from Lorem Picsum API
+        async function fetchRandomFoodPictures() {
+            try {
+                const response = await fetch('https://picsum.photos/v2/list?page=1&limit=3');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching random food pictures:', error);
+            }
         }
 
-        // Function to display three random words
-        function displayRandomWords() {
-            const randomWordsElement = document.getElementById('randomWords');
-            const word1 = generateRandomWord();
-            const word2 = generateRandomWord();
-            const word3 = generateRandomWord();
+        // Function to display three random food pictures
+        async function displayRandomFoodPictures() {
+            const foodPicturesContainer = document.getElementById('foodPictures');
 
-            randomWordsElement.textContent = `Random Words: ${word1}, ${word2}, ${word3}`;
+            try {
+                const picturesData = await fetchRandomFoodPictures();
+                
+                picturesData.slice(0, 3).forEach((picture) => {
+                    const img = document.createElement('img');
+                    img.src = picture.download_url;
+                    img.alt = 'Random Food';
+                    foodPicturesContainer.appendChild(img);
+                });
+            } catch (error) {
+                foodPicturesContainer.textContent = 'Failed to fetch random food pictures.';
+            }
         }
 
-        // Call the displayRandomWords function when the page loads
-        window.onload = displayRandomWords;
+        // Call the displayRandomFoodPictures function when the page loads
+        window.onload = displayRandomFoodPictures;
     </script>
 </body>
 </html>
+
