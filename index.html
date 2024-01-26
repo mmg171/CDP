@@ -16,6 +16,12 @@
             margin-top: 20px;
         }
 
+        .word {
+            display: inline-block;
+            position: relative;
+            animation: moveWord 5s infinite;
+        }
+
         #tryAgainBtn {
             margin-top: 20px;
             padding: 10px 20px;
@@ -44,6 +50,18 @@
                 transform: translateY(0);
             }
         }
+
+        @keyframes moveWord {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(20px, 20px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -54,9 +72,9 @@
     <h1>Your Next Vacation</h1>
 
     <div id="wordContainer">
-        <p id="word1"></p>
-        <p id="word2"></p>
-        <p id="word3"></p>
+        <p class="word" id="word1"></p>
+        <p class="word" id="word2"></p>
+        <p class="word" id="word3"></p>
     </div>
 
     <button id="tryAgainBtn" onclick="generateWords()">Try Again</button>
@@ -94,3 +112,4 @@
     </script>
 </body>
 </html>
+
