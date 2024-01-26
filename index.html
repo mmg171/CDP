@@ -3,13 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Should Write a Letter to: </title>
+    <title>You Should Write a Letter to:</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
             overflow: hidden;
+        }
+
+        #circlesContainer {
+            position: fixed;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatCircle 5s infinite;
+        }
+
+        @keyframes floatCircle {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
         }
 
         #wordContainer {
@@ -22,39 +50,94 @@
             font-size: 20px;
             cursor: pointer;
         }
+    </style>
+</head>
+<body>
+    <!-- Adding 100 circles -->
+    <div id="circlesContainer"></div>
 
-        /* Floating shapes animation */
-        .shape {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #ffffff; /* White color for shapes */
-            animation: float 5s infinite;
+    <h1>You Should Write a Letter to:</h1>
+
+    <div id="wordContainer">
+        <p id="sentence"></p>
+    </div>
+
+    <button id="tryAgainBtn" onclick="generateWords()">Try Again</button>
+
+    <script>
+        const wordList1 = [
+            "Your mom", "Obama", "Beyonce", "Dolly Parton", "Your cousin", "Your mailman",
+            "Your dog", "Your professor", "Dwayne Johnson", "All members of the band Abba",
+            "The mayor", "Timothee Chalamet", "Miley Cyrus", "Edward from Twilight",
+            "Jacob from Twilight", "Renesmee, the baby from Twilight"
+        ];
+
+        const wordList2 = [
+            "what you ate today,", "your favorite color,", "what you think about life,",
+            "who you have a crush on,", "how to make your favorite cake,", "what you think of dogs,",
+            "whether or not you like them,", "your biggest secret,", "your most embarrassing moment,",
+            "your morning routine,", "your favorite song,", "the worst thing you've ever done,"
+        ];
+
+        const wordList3 = [
+            "they understand your true potential", "they will believe in you",
+            "they can help make you feel better", "they can tell everyone how weird you are",
+            "they can tell their neighbor about it", "they will know why you are the way you are",
+            "they realize why you are so special", "they will have a topic to discuss with their therapist",
+            "they will be able to talk about it at book club", "they will write about in their diary"
+        ];
+
+        function generateRandomWord(wordList) {
+            return wordList[Math.floor(Math.random() * wordList.length)];
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
+        function generateRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
             }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0);
+            return color;
+        }
+
+        function createRandomCircle() {
+            const circle = document.createElement("div");
+            circle.classList.add("circle");
+            circle.style.width = Math.floor(Math.random() * 20 + 10) + "px";
+            circle.style.height = circle.style.width;
+            circle.style.backgroundColor = generateRandomColor();
+            circle.style.top = Math.random() * window.innerHeight + "px";
+            circle.style.left = Math.random() * window.innerWidth + "px";
+            document.getElementById("circlesContainer").appendChild(circle);
+        }
+
+        // Generate 100 circles on page load
+        for (let i = 0; i < 100; i++) {
+            createRandomCircle();
+        }
+
+        function generateWords() {
+            const word1 = generateRandomWord(wordList1);
+            const word2 = generateRandomWord(wordList2);
+            const word3 = generateRandomWord(wordList3);
+
+            const sentence = `${word1} telling them ${word2} so that ${word3}`;
+
+            document.getElementById("sentence").textContent = sentence;
+
+            // Clear existing circles
+            document.getElementById("circlesContainer").innerHTML = "";
+
+            // Generate 100 circles on button click
+            for (let i = 0; i < 100; i++) {
+                createRandomCircle();
             }
         }
 
-        /* Additional floating circles */
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            animation: floatCircle 5s infinite;
-        }
-
-        @keyframes floatCircle {
-            0% {
-     
-
+        // Initial generation on page load
+        generateWords();
+    </script>
+</body>
+</html>
 
 
